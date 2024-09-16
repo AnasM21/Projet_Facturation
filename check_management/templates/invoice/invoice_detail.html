@@ -1,0 +1,32 @@
+<!-- invoice/templates/invoice/invoice_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Invoice Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Invoice: {{ invoice.invoice_number }}</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Client: {{ invoice.client.name }}</h5>
+      <p class="card-text"><strong>Amount:</strong> ${{ invoice.amount }}</p>
+      <p class="card-text"><strong>Status:</strong> {{ invoice.status }}</p>
+      <p class="card-text"><strong>Issue Date:</strong> {{ invoice.issue_date }}</p>
+      <p class="card-text"><strong>Due Date:</strong> {{ invoice.due_date }}</p>
+      
+      <!-- Corrected line using the 'if' template tag -->
+      <p class="card-text"><strong>Paid by Check:</strong> 
+        {% if invoice.paid_by_check %}
+          {{ invoice.paid_by_check.check_number }}
+        {% else %}
+          N/A
+        {% endif %}
+      </p>
+      
+      <a href="{% url 'invoice_update' invoice.pk %}" class="btn btn-warning">Edit</a>
+      <a href="{% url 'invoice_delete' invoice.pk %}" class="btn btn-danger">Delete</a>
+      <a href="{% url 'invoice_list' %}" class="btn btn-secondary">Back to Invoice List</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

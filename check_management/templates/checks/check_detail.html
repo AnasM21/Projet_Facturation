@@ -1,0 +1,21 @@
+<!-- checks/templates/checks/check_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Check Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Check: {{ check.check_number }}</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Client: {{ check.client.name }}</h5>
+      <p class="card-text"><strong>Amount:</strong> ${{ check.amount }}</p>
+      <p class="card-text"><strong>Status:</strong> {{ check.status }}</p>
+      <p class="card-text"><strong>Issue Date:</strong> {{ check.issue_date }}</p>
+      <a href="{% url 'check_update' check.pk %}" class="btn btn-warning">Edit</a>
+      <a href="{% url 'check_delete' check.pk %}" class="btn btn-danger">Delete</a>
+      <a href="{% url 'check_list' %}" class="btn btn-secondary">Back to Check List</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
