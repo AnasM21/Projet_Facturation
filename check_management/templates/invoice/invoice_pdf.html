@@ -1,0 +1,73 @@
+<!-- templates/invoices/invoice_pdf.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        .invoice-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .invoice-header h1 {
+            margin: 0;
+            color: #333;
+        }
+        .client-details, .invoice-details {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        .client-details h2, .invoice-details h2 {
+            margin: 0;
+            color: #555;
+        }
+        .client-details p, .invoice-details p {
+            margin: 5px 0;
+            color: #777;
+        }
+        .total-amount {
+            text-align: right;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Invoice: {{ invoice.invoice_number }}</h1>
+        </div>
+        <div class="client-details">
+            <h2>Client Information</h2>
+            <p><strong>Name:</strong> {{ invoice.client.name }}</p>
+            <p><strong>Email:</strong> {{ invoice.client.email }}</p>
+            <p><strong>Phone:</strong> {{ invoice.client.phone }}</p>
+        </div>
+        <div class="invoice-details">
+            <h2>Invoice Details</h2>
+            <p><strong>Issue Date:</strong> {{ invoice.issue_date }}</p>
+            <p><strong>Amount:</strong> {{ invoice.amount }} DH</p>
+            <p><strong>Status:</strong> {{ invoice.status }}</p>
+        </div>
+        <div class="total-amount">
+            <p>Total Amount: ${{ invoice.amount }}</p>
+        </div>
+    </div>
+</body>
+</html>

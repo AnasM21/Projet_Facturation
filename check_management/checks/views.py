@@ -29,3 +29,5 @@ class CheckDeleteView(DeleteView):
     model = Check
     template_name = 'checks/check_confirm_delete.html'
     success_url = reverse_lazy('check_list')
+    
+
